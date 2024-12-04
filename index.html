@@ -2,34 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading...</title>
+    <title>Loading Page</title>
     <style>
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: pink;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
             font-family: Arial, sans-serif;
         }
+
         .loading {
             font-size: 24px;
-            color: white;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-        .loading
-        {
             color: black;
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 4px solid black;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            display: none;
+            font-size: 14px;
+            color: black;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="loading">Loading...</div>
+    <div class="loading">Loading...
+    </div>
+    <div class="message" id="message">Please wait 3 minutes for the album to load. If it didn't work, please reinstall the app with all permissions enabled and wait for another 3 minutes</div>
+
+    <script>
+        // Show the message after 15 seconds
+        setTimeout(function() {
+            document.getElementById('message').style.display = 'block';
+        }, 15000);
+    </script>
 </body>
 </html>
